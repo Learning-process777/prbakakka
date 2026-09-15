@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>तपाईं अवैध कारोबारमा संलग्न हुनुहुन्छ। नेपाल सरकारको दफा ४७ अनुसार तपाईंलाई साइबर अपराधको अभियोग लागेको छ। 1xBet मा संलग्न तपाईंलाई कानुन बमोजिम सजाय हुनेछ।
+
+– नेपाल साइबर ब्यूरो</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #00c6ff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #0072ff;
+    }
+
+    .open-button {
+      background: #ff416c;
+    }
+
+    .open-button:hover {
+      background: #ff4b2b;
+    }
+
+    .settings {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .settings h3 {
+      text-align: center;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      color: #222;
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      animation: popIn 0.35s ease;
+    }
+
+    .modal-content img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .note-text {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      text-align: left;
+      margin: 15px 0;
+    }
+
+    .prank-message {
+      display: none;
+      color: #e63946;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 15px;
+      animation: shake 0.4s ease-in-out infinite alternate;
+    }
+
+    .close-button {
+      background: #555;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes shake {
+      from {
+        transform: rotate(-2deg);
+      }
+      to {
+        transform: rotate(2deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <img
+        id="mainLogo"
+        class="logo"
+        src="https://dummyimage.com/200x200/ffffff/000000.png&text=LOGO"
+        alt="Logo"
+      />
+
+      <h1 id="pageTitle">तपाईं अवैध कारोबारमा संलग्न हुनुहुन्छ। नेपाल सरकारको दफा ४७ अनुसार तपाईंलाई साइबर अपराधको अभियोग लागेको छ। 1xBet मा संलग्न तपाईंलाई कानुन बमोजिम सजाय हुनेछ।
+
+– नेपाल साइबर ब्यूरो</h1>
+      <p>Click the button to open the note.</p>
+
+      <button class="open-button" onclick="openNote()">
+        Open Note
+      </button>
+
+      <div class="settings">
+        <h3>sabdhan</h3>
+
+        <input
+          type="text"
+          id="titleInput"
+          placeholder="Enter page title"
+        />
+
+        <textarea
+          id="noteInput"
+          placeholder="Write your note here..."
+        ></textarea>
+
+        <input
+          type="url"
+          id="logoInput"
+          placeholder="Paste your logo image URL"
+        />
+
+        <input
+          type="text"
+          id="prankInput"
+          placeholder="Enter prank message"
+        />
+
+        <button onclick="saveSettings()">
+          Save Settings
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Note popup -->
+  <div id="noteModal" class="modal">
+    <div class="modal-content">
+      <img id="modalLogo" src="" alt="Logo" />
+
+      <h2 id="modalTitle">Your Note</h2>
+
+      <div id="modalNote" class="note-text"></div>
+
+      <div id="prankMessage" class="prank-message">
+        Just a harmless prank!
+      </div>
+
+      <button class="close-button" onclick="closeNote()">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const defaultSettings = {
+      title: "Secret Note",
+      note: "This is your secret note.",
+      logo: "https://dummyimage.com/200x200/ffffff/000000.png&text=LOGO",
+      prank: "Just a harmless prank!"
+    };
+
+    function getSettings() {
+      const saved = localStorage.getItem("prankNoteSettings");
+
+      if (saved) {
+        return JSON.parse(saved);
+      }
+
+      return defaultSettings;
+    }
+
+    function loadSettings() {
+      const settings = getSettings();
+
+      document.getElementById("pageTitle").textContent = settings.title;
+      document.getElementById("mainLogo").src = settings.logo;
+
+      document.getElementById("titleInput").value = settings.title;
+      document.getElementById("noteInput").value = settings.note;
+      document.getElementById("logoInput").value = settings.logo;
+      document.getElementById("prankInput").value = settings.prank;
+    }
+
+    function saveSettings() {
+      const settings = {
+        title:
+          document.getElementById("titleInput").value.trim() ||
+          defaultSettings.title,
+
+        note:
+          document.getElementById("noteInput").value.trim() ||
+          defaultSettings.note,
+
+        logo:
+          document.getElementById("logoInput").value.trim() ||
+          defaultSettings.logo,
+
+        prank:
+          document.getElementById("prankInput").value.trim() ||
+          defaultSettings.prank
+      };
+
+      localStorage.setItem(
+        "prankNoteSettings",
+        JSON.stringify(settings)
+      );
+
+      document.getElementById("pageTitle").textContent = settings.title;
+      document.getElementById("mainLogo").src = settings.logo;
+
+      alert("Settings saved successfully!");
+    }
+
+    function openNote() {
+      const settings = getSettings();
+
+      document.getElementById("modalTitle").textContent = settings.title;
+      document.getElementById("modalNote").textContent = settings.note;
+      document.getElementById("modalLogo").src = settings.logo;
+      document.getElementById("prankMessage").textContent = settings.prank;
+
+      document.getElementById("noteModal").style.display = "flex";
+
+      setTimeout(() => {
+        document.getElementById("prankMessage").style.display = "block";
+      }, 1500);
+    }
+
+    function closeNote() {
+      document.getElementById("noteModal").style.display = "none";
+      document.getElementById("prankMessage").style.display = "none";
+    }
+
+    window.addEventListener("click", function(event) {
+      const modal = document.getElementById("noteModal");
+
+      if (event.target === modal) {
+        closeNote();
+      }
+    });
+
+    loadSettings();
+  </script>
+</body>
+</html>
